@@ -39,10 +39,19 @@ namespace Milkitic.SessionLib
         /// </summary>
         public void Run()
         {
-            ActionParam param = new ActionParam(null, null);
+            Run(null);
+        }
+
+        /// <summary>
+        /// 运行程序。
+        /// <param name="parameter">初始化运行参数</param>
+        /// </summary>
+        public void Run(object parameter)
+        {
+            ActionParam param = new ActionParam(null, parameter);
             do
             {
-                param = CurrentNode.Action.Invoke((param.TargetParam));
+                param = CurrentNode.Action.Invoke(param.TargetParam);
                 if (param.TargetName != null)
                 {
                     _prevNode = CurrentNode;
