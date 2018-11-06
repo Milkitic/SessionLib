@@ -26,19 +26,12 @@ namespace Milkitic.SessionLib
         /// <returns></returns>
         public override Node SearchNode(string nodeName)
         {
-            if (Root.Name == nodeName)
-                return Root;
-            if (Root.Children == null)
-                return null;
-
             var node = _currentNode.Children?.FirstOrDefault(child => child.Name == nodeName);
             if (node != null)
                 return node;
-
             if (_currentNode.Parent != null && _currentNode.Parent.Name == nodeName)
                 return _currentNode.Parent;
-
-            return Root.SearchChild(nodeName);
+            return base.SearchNode(nodeName);
         }
 
         /// <summary>
